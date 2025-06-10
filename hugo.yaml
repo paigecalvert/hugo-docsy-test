@@ -48,6 +48,12 @@ languages:
     title: Helm Docs
     params:
       description: A documentation site built with Hugo and Docsy
+  es:
+    languageName: Español
+    title: Documentación de Helm
+    contentDir: content/es
+    params:
+      description: Un sitio de documentación construido con Hugo y Docsy
 
 markup:
   goldmark:

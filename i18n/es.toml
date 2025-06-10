@@ -1,0 +1,113 @@
+# Spanish translations for UI elements
+# These translations are used by Hugo and the Docsy theme for interface elements
+
+[toggle_navigation]
+other = "Alternar navegación"
+
+[search_placeholder]
+other = "Buscar..."
+
+[search_results]
+other = "Resultados de búsqueda"
+
+[no_search_results]
+other = "No se encontraron resultados"
+
+[page_next]
+other = "Siguiente"
+
+[page_prev]
+other = "Anterior"
+
+[page_first]
+other = "Primera"
+
+[page_last]
+other = "Última"
+
+[toc_title]
+other = "Contenido"
+
+[edit_page]
+other = "Editar esta página"
+
+[create_child_page]
+other = "Crear página hija"
+
+[create_documentation_issue]
+other = "Crear issue de documentación"
+
+[create_project_issue]
+other = "Crear issue del proyecto"
+
+[feedback_title]
+other = "Comentarios"
+
+[feedback_yes]
+other = "Sí"
+
+[feedback_no]
+other = "No"
+
+[feedback_question]
+other = "¿Te resultó útil esta página?"
+
+[reading_time]
+other = "Tiempo de lectura"
+
+[reading_time_minutes]
+other = "min"
+
+[print_entire_section]
+other = "Imprimir sección completa"
+
+[home]
+other = "Inicio"
+
+[documentation]
+other = "Documentación"
+
+[blog]
+other = "Blog"
+
+[community]
+other = "Comunidad"
+
+[about]
+other = "Acerca de"
+
+[contact]
+other = "Contacto"
+
+[breadcrumb_home]
+other = "Inicio"
+
+[footer_all_rights_reserved]
+other = "Todos los derechos reservados"
+
+[version_banner_archived]
+other = "Esta es una versión archivada de la documentación"
+
+[version_banner_latest]
+other = "Para la versión más reciente, consulte"
+
+[language_selector_label]
+other = "Seleccionar idioma"
+
+[download]
+other = "Descargar"
+
+[learn_more]
+other = "Aprende más"
+
+[get_started]
+other = "Comenzar"
+
+[view_source]
+other = "Ver código fuente"
+
+[page_not_found]
+other = "Página no encontrada"
+
+[go_back_home]
+other = "Volver al inicio" 
