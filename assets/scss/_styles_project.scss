@@ -23,6 +23,79 @@ body, p, .lead, .text-body {
   font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
 }
 
+// Custom navbar styling with topography background
+.td-navbar {
+  background-image: url('/images/topography.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}  
+  
+  // Ensure navbar brand (logo/title) is visible
+  .navbar-brand {
+    color: $navy;
+    font-weight: 600;
+    
+    &:hover {
+      color: $blue-light; // shade-mid on hover
+    }
+  }
+  
+//   // Style navigation links
+  .nav-link {
+    color: $navy; // shade-mid
+    font-weight: 500;
+    
+    &:hover, &:focus {
+      color: #1B53C2 !important; // blue-light on hover
+      background-color: rgba(219, 225, 243, 0.1); // subtle highlight
+      border-radius: 4px;
+    }
+    
+    &.active {
+      color: #1B53C2 !important; // blue-light for active state
+      font-weight: 600;
+    }
+  }
+  
+//   // Style dropdown menus
+  // .dropdown-menu {
+  //   background-color: rgba(15, 22, 137, 0.95);
+  //   border: 1px solid rgba(183, 194, 233, 0.3);
+    
+  //   .dropdown-item {
+  //     color: #B7C2E9;
+      
+  //     &:hover, &:focus {
+  //       background-color: rgba(27, 83, 194, 0.2);
+  //       color: #DBE1F3;
+  //     }
+  //   }
+  // }
+  
+//   // Style search box if present
+  .td-search-input {
+    background-color: rgba(219, 225, 243, 0.1);
+    border: 1px solid rgba(183, 194, 233, 0.3);
+    color: #DBE1F3;
+    
+    &::placeholder {
+      color: rgba(183, 194, 233, 0.7);
+    }
+    
+    &:focus {
+      background-color: rgba(219, 225, 243, 0.2);
+      border-color: #1B53C2;
+      box-shadow: 0 0 0 0.2rem rgba(27, 83, 194, 0.25);
+    }
+  }
+
+
+// // Ensure navbar stays opaque when scrolling over cover images
+// .td-navbar:not(.navbar-dark) {
+//   background-color: rgba(15, 22, 137, 0.95) !important;
+// }
+
 // Custom color utility classes for your palette
 .bg-navy { background-color: #0F1689 !important; }
 .bg-blue-dark { background-color: #090E6F !important; }
@@ -45,23 +118,6 @@ body, p, .lead, .text-body {
 .text-accent-green { color: #2F84A7 !important; }
 .text-accent-red { color: #95297C !important; }
 .text-accent-yellow { color: #D1AA9B !important; }
-
-// Example: Custom navbar styling with your colors
-// .td-navbar {
-//   background-color: $navy;
-//   
-//   .navbar-brand {
-//     color: $shade-light !important;
-//   }
-//   
-//   .nav-link {
-//     color: $shade-mid !important;
-//     
-//     &:hover {
-//       color: $blue-light !important;
-//     }
-//   }
-// }
 
 // Example: Custom button styles with your palette
 // .btn-custom-primary {

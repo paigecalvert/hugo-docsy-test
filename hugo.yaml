@@ -1,5 +1,5 @@
 baseURL: https://example.org
-title: My Hugo Docsy Site
+title: Helm Docs
 theme: docsy
 
 # Language settings
@@ -45,7 +45,7 @@ imaging:
 languages:
   en:
     languageName: English
-    title: My Hugo Docsy Site
+    title: Helm Docs
     params:
       description: A documentation site built with Hugo and Docsy
 
