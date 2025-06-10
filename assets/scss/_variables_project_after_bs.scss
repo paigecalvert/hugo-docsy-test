@@ -1,0 +1,22 @@
+/*
+Project-specific variables that need to be set after Bootstrap variables are loaded.
+Use this file to add colors to or modify Bootstrap's color maps.
+*/
+
+// Add custom colors to Bootstrap's theme colors map
+$custom-colors: (
+  'navy': #0F1689,
+  'blue-dark': #090E6F,
+  'blue-light': #1B53C2,
+  'shade-dark': #050843,
+  'shade-mid': #B7C2E9,
+  'shade-light': #DBE1F3,
+  'accent-blue': #3B82BF,
+  'accent-green': #2F84A7,
+  'accent-red': #95297C,
+  'accent-yellow': #D1AA9B,
+);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+// Add your post-Bootstrap variables here 

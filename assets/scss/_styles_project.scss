@@ -1,0 +1,98 @@
+/*
+Project-specific custom SCSS styles.
+Use this file to add your own custom styles and override any Docsy theme styles.
+*/
+
+// Import Space Mono from Google Fonts for headings
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+// Ensure headings use Space Mono
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: 'Space Mono', 'SF Mono', Monaco, Inconsolata, 'Roboto Mono', monospace !important;
+  font-weight: 400; // Space Mono looks best at normal weight
+}
+
+// Make sure bold headings use the bold weight
+h1, h2, h3, .h1, .h2, .h3 {
+  font-weight: 700;
+}
+
+// Ensure body text uses Public Sans
+body, p, .lead, .text-body {
+  font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+// Custom color utility classes for your palette
+.bg-navy { background-color: #0F1689 !important; }
+.bg-blue-dark { background-color: #090E6F !important; }
+.bg-blue-light { background-color: #1B53C2 !important; }
+.bg-shade-dark { background-color: #050843 !important; }
+.bg-shade-mid { background-color: #B7C2E9 !important; }
+.bg-shade-light { background-color: #DBE1F3 !important; }
+.bg-accent-blue { background-color: #3B82BF !important; }
+.bg-accent-green { background-color: #2F84A7 !important; }
+.bg-accent-red { background-color: #95297C !important; }
+.bg-accent-yellow { background-color: #D1AA9B !important; }
+
+.text-navy { color: #0F1689 !important; }
+.text-blue-dark { color: #090E6F !important; }
+.text-blue-light { color: #1B53C2 !important; }
+.text-shade-dark { color: #050843 !important; }
+.text-shade-mid { color: #B7C2E9 !important; }
+.text-shade-light { color: #DBE1F3 !important; }
+.text-accent-blue { color: #3B82BF !important; }
+.text-accent-green { color: #2F84A7 !important; }
+.text-accent-red { color: #95297C !important; }
+.text-accent-yellow { color: #D1AA9B !important; }
+
+// Example: Custom navbar styling with your colors
+// .td-navbar {
+//   background-color: $navy;
+//   
+//   .navbar-brand {
+//     color: $shade-light !important;
+//   }
+//   
+//   .nav-link {
+//     color: $shade-mid !important;
+//     
+//     &:hover {
+//       color: $blue-light !important;
+//     }
+//   }
+// }
+
+// Example: Custom button styles with your palette
+// .btn-custom-primary {
+//   background-color: $navy;
+//   border-color: $navy;
+//   color: white;
+//   
+//   &:hover {
+//     background-color: $blue-dark;
+//     border-color: $blue-dark;
+//   }
+// }
+
+// Example: Custom alert/callout boxes
+// .alert-custom {
+//   background-color: $shade-light;
+//   border-left: 4px solid $accent-blue;
+//   color: $shade-dark;
+// }
+
+// Example: Custom typography
+// .custom-heading {
+//   font-family: 'Georgia', serif;
+//   font-weight: 300;
+//   letter-spacing: 0.5px;
+// }
+
+// Example: Custom code block styling
+// .highlight {
+//   border-radius: 8px;
+//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+// }
+
+// Add your custom styles here 

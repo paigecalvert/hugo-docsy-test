@@ -1,0 +1,61 @@
+/*
+Project-specific theme variable overrides.
+Use this file to override Docsy theme variables and Bootstrap variables.
+*/
+
+// Custom Font Configuration
+// Enable Google Fonts (we need this for Space Mono)
+$td-enable-google-fonts: true;
+
+// Primary font family for body text (Public Sans from USWDS)
+$google_font_name: 'Public Sans';
+$google_font_family: 'Public+Sans:300,400,500,600,700';
+
+// Font family variables
+$font-family-sans-serif: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$font-family-monospace: 'Space Mono', 'SF Mono', Monaco, Inconsolata, 'Roboto Mono', 'Droid Sans Mono', 'Liberation Mono', Menlo, Courier, monospace;
+
+// Heading font family (Space Mono for distinctive headings)
+$headings-font-family: 'Space Mono', $font-family-monospace;
+
+// Font weights
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Custom Color Palette
+// Primary
+$navy: #0F1689;
+
+// Secondary  
+$blue-dark: #090E6F;
+$blue-light: #1B53C2;
+
+// Shades
+$shade-dark: #050843;
+$shade-mid: #B7C2E9;
+$shade-light: #DBE1F3;
+
+// Accents
+$accent-blue: #3B82BF;
+$accent-green: #2F84A7;
+$accent-red: #95297C;
+$accent-yellow: #D1AA9B;
+
+// Bootstrap Theme Color Overrides
+$primary: $navy;
+$secondary: $blue-light;
+
+// Additional Bootstrap color customizations
+$info: $accent-blue;
+$success: $accent-green;
+$warning: $accent-yellow;
+$danger: $accent-red;
+
+// Example: Enable/disable Bootstrap features
+// $enable-gradients: false;
+// $enable-shadows: false;
+
+// Add your custom variables here 
