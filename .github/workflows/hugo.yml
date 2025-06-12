@@ -7,7 +7,6 @@ on:
     branches:
       - main      # Latest/current version
       - v1.0      # Version 1.0
-      - v2.0      # Version 2.0
       # Add more version branches as needed
 
   # Allows you to run this workflow manually from the Actions tab
@@ -83,22 +82,6 @@ jobs:
           cd ..
           rm -rf v1.0-build
           echo "v1.0 version built and copied to /v1.0/"
-      
-      # Build v2.0 version (if branch exists)
-      - name: Build v2.0 version
-        continue-on-error: true
-        run: |
-          echo "Building v2.0 version..."
-          git clone --depth 1 --branch v2.0 ${{ github.server_url }}/${{ github.repository }} v2.0-build
-          cd v2.0-build
-          npm ci
-          hugo mod tidy
-          hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/v2.0/"
-          mkdir -p ../deployment/v2.0
-          cp -r public/* ../deployment/v2.0/
-          cd ..
-          rm -rf v2.0-build
-          echo "v2.0 version built and copied to /v2.0/"
       
       # Show final structure
       - name: Show deployment structure
