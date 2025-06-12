@@ -104,16 +104,16 @@ params:
   # in the other version instead of the main page. Useful if the document 
   # doesn't change much between versions. Note: if the current page doesn't 
   # exist in the other version, the link will be broken.
-  version_menu_pagelinks: true
+  version_menu_pagelinks: false
 
   # Configure available versions for the dropdown
   versions:
     - version: "main"
-      url: "https://paigecalvert.github.io/hugo-docsy-test/"
+      url: "/"
     - version: "v1.0"
-      url: "https://paigecalvert.github.io/hugo-docsy-test/v1.0/"
+      url: "/v1.0/"
     - version: "v2.0" 
-      url: "https://paigecalvert.github.io/hugo-docsy-test/v2.0/"
+      url: "/v2.0/"
 
   # Flag used in the "version-banner" partial to decide whether to display a
   # banner on every page indicating that this is an archived version of the docs.
