@@ -1,0 +1,10 @@
+{{ if .Site.Params.versions }}
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  {{ .Site.Params.version_menu }}
+</a>
+<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+  {{ range .Site.Params.versions }}
+  <a class="dropdown-item" href="{{ if $.Site.Params.version_menu_pagelinks }}{{ if eq $.Site.Params.version_menu_pagelinks true }}{{ if $.Page.RelPermalink }}{{ $currentPath := $.Page.RelPermalink }}{{ if hasPrefix $currentPath "/docs/" }}{{ $pathAfterDocs := strings.TrimPrefix "/docs/" $currentPath }}{{ .url }}{{ $pathAfterDocs }}{{ else }}{{ .url }}{{ end }}{{ else }}{{ .url }}{{ end }}{{ else }}{{ .url }}{{ end }}{{ else }}{{ .url }}{{ end }}">{{ .version }}</a>
+  {{ end }}
+</div>
+{{ end }} 
