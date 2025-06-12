@@ -109,11 +109,11 @@ params:
   # Configure available versions for the dropdown
   versions:
     - version: "main"
-      url: "/"
+      url: "https://paigecalvert.github.io/hugo-docsy-test/"
     - version: "v1.0"
-      url: "/v1.0/"
+      url: "https://paigecalvert.github.io/hugo-docsy-test/v1.0/"
     - version: "v2.0" 
-      url: "/v2.0/"
+      url: "https://paigecalvert.github.io/hugo-docsy-test/v2.0/"
 
   # Flag used in the "version-banner" partial to decide whether to display a
   # banner on every page indicating that this is an archived version of the docs.
