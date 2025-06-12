@@ -4,7 +4,7 @@
 </a>
 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
   {{ range .Site.Params.versions }}
-  <a class="dropdown-item" href="{{ if $.Site.Params.version_menu_pagelinks }}{{ if eq $.Site.Params.version_menu_pagelinks true }}{{ if $.Page.RelPermalink }}{{ $currentPath := $.Page.RelPermalink }}{{ if hasPrefix $currentPath "/docs/" }}{{ $pathAfterDocs := strings.TrimPrefix "/docs/" $currentPath }}{{ .url }}{{ $pathAfterDocs }}{{ else }}{{ .url }}{{ end }}{{ else }}{{ .url }}{{ end }}{{ else }}{{ .url }}{{ end }}{{ else }}{{ .url }}{{ end }}">{{ .version }}</a>
+  <a class="dropdown-item" href="{{ if $.Site.Params.version_menu_pagelinks }}{{ if eq $.Site.Params.version_menu_pagelinks true }}{{ if $.Page.RelPermalink }}{{ $currentPath := $.Page.RelPermalink }}{{ if hasPrefix $currentPath "/docs/" }}{{ $pathAfterDocs := strings.TrimPrefix "/docs/" $currentPath }}{{ $baseURL := strings.TrimSuffix "/" .url }}{{ $baseURL }}/{{ $pathAfterDocs }}{{ else }}{{ .url }}{{ end }}{{ else }}{{ .url }}{{ end }}{{ else }}{{ .url }}{{ end }}{{ else }}{{ .url }}{{ end }}">{{ .version }}</a>
   {{ end }}
 </div>
 {{ end }} 
