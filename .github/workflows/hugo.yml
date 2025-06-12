@@ -1,4 +1,4 @@
-# Simple multi-version Hugo site deployment to GitHub Pages
+# Multi-version Hugo site deployment to GitHub Pages
 name: Deploy Multi-Version Hugo site to Pages
 
 on:
@@ -7,7 +7,6 @@ on:
     branches:
       - main      # Latest/current version
       - v1.0      # Version 1.0
-      - v2.0      # Version 2.0
       # Add more version branches as needed
 
   # Allows you to run this workflow manually from the Actions tab
@@ -31,7 +30,7 @@ defaults:
     shell: bash
 
 jobs:
-  # Build job - only builds the current branch
+  # Build job - builds ALL versions to ensure consistency
   build:
     runs-on: ubuntu-latest
     env:
@@ -51,86 +50,56 @@ jobs:
         with:
           node-version: '20'
       
-      # Determine current branch and version path
-      - name: Determine version info
-        id: version
-        run: |
-          BRANCH_NAME=${GITHUB_REF#refs/heads/}
-          echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
-          
-          if [ "$BRANCH_NAME" = "main" ]; then
-            echo "path=." >> $GITHUB_OUTPUT
-            echo "base_url=${{ steps.pages.outputs.base_url }}/" >> $GITHUB_OUTPUT
-          else
-            echo "path=$BRANCH_NAME" >> $GITHUB_OUTPUT
-            echo "base_url=${{ steps.pages.outputs.base_url }}/$BRANCH_NAME/" >> $GITHUB_OUTPUT
-          fi
-          
-          echo "Building branch: $BRANCH_NAME"
-          echo "Deploy path: $([ "$BRANCH_NAME" = "main" ] && echo "root" || echo "$BRANCH_NAME")"
+      # Create deployment directory
+      - name: Create deployment directory
+        run: mkdir -p deployment
       
-      # Checkout current branch
-      - name: Checkout current branch
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      
-      # Build current version
-      - name: Install Node.js dependencies
-        run: npm ci
-      - name: Download Hugo modules
-        run: hugo mod tidy
-      - name: Build current version
-        env:
-          HUGO_ENVIRONMENT: production
-          HUGO_ENV: production
+      # Build main version
+      - name: Build main version
         run: |
-          hugo \
-            --gc \
-            --minify \
-            --baseURL "${{ steps.version.outputs.base_url }}"
+          echo "Building main version..."
+          git clone --depth 1 --branch main ${{ github.server_url }}/${{ github.repository }} main-build
+          cd main-build
+          npm ci
+          hugo mod tidy
+          hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+          cp -r public/* ../deployment/
+          cd ..
+          rm -rf main-build
+          echo "Main version built and copied to root"
       
-      # Download existing site (if it exists) to preserve other versions
-      - name: Download existing site
-        continue-on-error: true
+      # Build v1.0 version
+      - name: Build v1.0 version
         run: |
-          # Create combined public directory
-          mkdir -p combined_public
-          
-          # Try to download existing site to preserve other versions
-          echo "Attempting to download existing site..."
-          
-          # Download main version if we're not building main
-          if [ "${{ steps.version.outputs.branch }}" != "main" ]; then
-            echo "Downloading main version..."
-            wget -r -np -nH -nd -P combined_public/ -A "*.html,*.css,*.js,*.png,*.jpg,*.svg,*.ico,*.json,*.xml" "${{ steps.pages.outputs.base_url }}/" || echo "Main version not found or first deployment"
-          fi
-          
-          # Download other version directories (but skip the one we're currently building)
-          for version in v1.0 v2.0; do
-            if [ "$version" != "${{ steps.version.outputs.branch }}" ]; then
-              echo "Downloading $version..."
-              mkdir -p "combined_public/$version"
-              wget -r -np -nH -nd -P "combined_public/$version/" -A "*.html,*.css,*.js,*.png,*.jpg,*.svg,*.ico,*.json,*.xml" "${{ steps.pages.outputs.base_url }}/$version/" || echo "$version not found"
-            fi
-          done
+          echo "Building v1.0 version..."
+          git clone --depth 1 --branch v1.0 ${{ github.server_url }}/${{ github.repository }} v1.0-build
+          cd v1.0-build
+          npm ci
+          hugo mod tidy
+          hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/v1.0/"
+          mkdir -p ../deployment/v1.0
+          cp -r public/* ../deployment/v1.0/
+          cd ..
+          rm -rf v1.0-build
+          echo "v1.0 version built and copied to /v1.0/"
       
-      # Copy current build to appropriate location
-      - name: Copy current build
+      # Show final structure
+      - name: Show deployment structure
         run: |
-          if [ "${{ steps.version.outputs.path }}" = "." ]; then
-            # Copy to root, but preserve any existing version subdirectories
-            cp -r public/* combined_public/
-          else
-            # Copy to version subdirectory
-            mkdir -p "combined_public/${{ steps.version.outputs.path }}"
-            cp -r public/* "combined_public/${{ steps.version.outputs.path }}/"
+          echo "Final deployment structure:"
+          find deployment -name "*.html" | head -20
+          echo ""
+          echo "Directory structure:"
+          ls -la deployment/
+          if [ -d "deployment/v1.0" ]; then
+            echo "v1.0 contents:"
+            ls -la deployment/v1.0/ | head -10
           fi
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./combined_public
+          path: ./deployment
 
   # Deployment job
   deploy:
