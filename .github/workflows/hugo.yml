@@ -90,47 +90,29 @@ jobs:
             --minify \
             --baseURL "${{ steps.version.outputs.base_url }}"
       
-      # Download existing site (if it exists) to preserve other versions
-      - name: Download existing site
-        continue-on-error: true
-        run: |
-          # Create combined public directory
-          mkdir -p combined_public
-          
-          # Try to download existing site to preserve other versions
-          echo "Attempting to download existing site..."
-          
-          # Download main version if we're not building main
-          if [ "${{ steps.version.outputs.branch }}" != "main" ]; then
-            echo "Downloading main version..."
-            wget -r -np -nH -nd -P combined_public/ -A "*.html,*.css,*.js,*.png,*.jpg,*.svg,*.ico,*.json,*.xml" "${{ steps.pages.outputs.base_url }}/" || echo "Main version not found or first deployment"
-          fi
-          
-          # Download other version directories (but skip the one we're currently building)
-          for version in v1.0 v2.0; do
-            if [ "$version" != "${{ steps.version.outputs.branch }}" ]; then
-              echo "Downloading $version..."
-              mkdir -p "combined_public/$version"
-              wget -r -np -nH -nd -P "combined_public/$version/" -A "*.html,*.css,*.js,*.png,*.jpg,*.svg,*.ico,*.json,*.xml" "${{ steps.pages.outputs.base_url }}/$version/" || echo "$version not found"
-            fi
-          done
-      
-      # Copy current build to appropriate location
-      - name: Copy current build
+      # For now, just deploy the current version without trying to preserve others
+      - name: Prepare deployment
         run: |
           if [ "${{ steps.version.outputs.path }}" = "." ]; then
-            # Copy to root, but preserve any existing version subdirectories
-            cp -r public/* combined_public/
+            # Deploy main to root
+            echo "Deploying main version to root..."
+            mkdir -p deployment
+            cp -r public/* deployment/
           else
-            # Copy to version subdirectory
-            mkdir -p "combined_public/${{ steps.version.outputs.path }}"
-            cp -r public/* "combined_public/${{ steps.version.outputs.path }}/"
+            # Deploy version to subdirectory
+            echo "Deploying ${{ steps.version.outputs.branch }} to subdirectory..."
+            mkdir -p "deployment/${{ steps.version.outputs.path }}"
+            cp -r public/* "deployment/${{ steps.version.outputs.path }}/"
           fi
+          
+          # Show what we're deploying
+          echo "Deployment structure:"
+          find deployment -type f -name "*.html" | head -10
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./combined_public
+          path: ./deployment
 
   # Deployment job
   deploy:
