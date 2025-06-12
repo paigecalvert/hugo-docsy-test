@@ -1,4 +1,4 @@
-# Simple multi-version Hugo site deployment to GitHub Pages
+# Multi-version Hugo site deployment to GitHub Pages
 name: Deploy Multi-Version Hugo site to Pages
 
 on:
@@ -31,7 +31,7 @@ defaults:
     shell: bash
 
 jobs:
-  # Build job - only builds the current branch
+  # Build job - builds the current branch and combines with existing versions
   build:
     runs-on: ubuntu-latest
     env:
@@ -90,29 +90,95 @@ jobs:
             --minify \
             --baseURL "${{ steps.version.outputs.base_url }}"
       
-      # For now, just deploy the current version without trying to preserve others
-      - name: Prepare deployment
+      # Download existing site from GitHub Pages
+      - name: Download existing site
+        continue-on-error: true
+        run: |
+          echo "Downloading existing site to preserve other versions..."
+          mkdir -p combined_public
+          
+          # Download the current live site using wget
+          SITE_URL="${{ steps.pages.outputs.base_url }}"
+          echo "Site URL: $SITE_URL"
+          
+          # Download with wget, following redirects and preserving directory structure
+          wget --recursive \
+               --no-parent \
+               --no-host-directories \
+               --cut-dirs=1 \
+               --reject="index.html*" \
+               --directory-prefix=combined_public \
+               --timeout=10 \
+               --tries=2 \
+               --quiet \
+               "$SITE_URL" || echo "No existing site found or download failed"
+          
+          # Also try to download the main index if we're not building main
+          if [ "${{ steps.version.outputs.branch }}" != "main" ]; then
+            wget --quiet --timeout=10 --tries=2 -O combined_public/index.html "$SITE_URL" || echo "Main index not found"
+          fi
+          
+          # Download version directories that exist
+          for version in v1.0 v2.0; do
+            if [ "$version" != "${{ steps.version.outputs.branch }}" ]; then
+              echo "Trying to download $version..."
+              mkdir -p "combined_public/$version"
+              wget --recursive \
+                   --no-parent \
+                   --no-host-directories \
+                   --cut-dirs=2 \
+                   --directory-prefix="combined_public/$version" \
+                   --timeout=10 \
+                   --tries=2 \
+                   --quiet \
+                   "$SITE_URL$version/" || echo "$version not found"
+            fi
+          done
+          
+          echo "Existing site download completed"
+          echo "Current combined_public structure:"
+          find combined_public -name "*.html" | head -10 || echo "No HTML files found"
+      
+      # Copy current build to appropriate location
+      - name: Copy current build
         run: |
           if [ "${{ steps.version.outputs.path }}" = "." ]; then
-            # Deploy main to root
+            # Deploy main to root - overwrite main content but preserve version subdirectories
             echo "Deploying main version to root..."
-            mkdir -p deployment
-            cp -r public/* deployment/
+            
+            # First, preserve any existing version directories
+            for version in v1.0 v2.0; do
+              if [ -d "combined_public/$version" ]; then
+                echo "Preserving existing $version directory"
+                mv "combined_public/$version" "/tmp/$version-backup" || echo "No $version to preserve"
+              fi
+            done
+            
+            # Copy new main content
+            cp -r public/* combined_public/
+            
+            # Restore version directories
+            for version in v1.0 v2.0; do
+              if [ -d "/tmp/$version-backup" ]; then
+                echo "Restoring $version directory"
+                mv "/tmp/$version-backup" "combined_public/$version"
+              fi
+            done
           else
             # Deploy version to subdirectory
             echo "Deploying ${{ steps.version.outputs.branch }} to subdirectory..."
-            mkdir -p "deployment/${{ steps.version.outputs.path }}"
-            cp -r public/* "deployment/${{ steps.version.outputs.path }}/"
+            mkdir -p "combined_public/${{ steps.version.outputs.path }}"
+            cp -r public/* "combined_public/${{ steps.version.outputs.path }}/"
           fi
           
-          # Show what we're deploying
-          echo "Deployment structure:"
-          find deployment -type f -name "*.html" | head -10
+          # Show final structure
+          echo "Final deployment structure:"
+          find combined_public -name "*.html" | head -15
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./deployment
+          path: ./combined_public
 
   # Deployment job
   deploy:
