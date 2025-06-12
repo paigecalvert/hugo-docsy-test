@@ -104,7 +104,7 @@ params:
   # in the other version instead of the main page. Useful if the document 
   # doesn't change much between versions. Note: if the current page doesn't 
   # exist in the other version, the link will be broken.
-  version_menu_pagelinks: false
+  version_menu_pagelinks: true
 
   # Configure available versions for the dropdown
   versions:
