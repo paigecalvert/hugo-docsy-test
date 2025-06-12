@@ -1,269 +1,36 @@
-<!doctype html>
-<html itemscope itemtype="http://schema.org/WebPage" lang="en" class="no-js">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=57793&amp;path=livereload" data-no-instant defer></script>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
-
-
-<link rel="shortcut icon" href="/favicons/favicon.ico" >
-<link rel="apple-touch-icon" href="/favicons/apple-touch-icon-180x180.png" sizes="180x180">
-<link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16">
-<link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="/favicons/android-36x36.png" sizes="36x36">
-<link rel="icon" type="image/png" href="/favicons/android-48x48.png" sizes="48x48">
-<link rel="icon" type="image/png" href="/favicons/android-72x72.png" sizes="72x72">
-<link rel="icon" type="image/png" href="/favicons/android-96x96.png" sizes="96x96">
-<link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
-<link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
-
-<title>Configuration | Helm Docs</title>
-<meta name="description" content="Basic configuration options for your Hugo Docsy site">
-<meta property="og:url" content="http://localhost:57793/docs/getting-started/configuration/">
-  <meta property="og:site_name" content="Helm Docs">
-  <meta property="og:title" content="Configuration">
-  <meta property="og:description" content="Basic configuration options for your Hugo Docsy site">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="docs">
-    <meta property="article:modified_time" content="2025-06-10T12:30:23-06:00">
-    <meta property="og:image" content="http://localhost:57793/images/logo.png">
-
-  <meta itemprop="name" content="Configuration">
-  <meta itemprop="description" content="Basic configuration options for your Hugo Docsy site">
-  <meta itemprop="dateModified" content="2025-06-10T12:30:23-06:00">
-  <meta itemprop="wordCount" content="328">
-  <meta itemprop="image" content="http://localhost:57793/images/logo.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="http://localhost:57793/images/logo.png">
-  <meta name="twitter:title" content="Configuration">
-  <meta name="twitter:description" content="Basic configuration options for your Hugo Docsy site">
-<link href="/scss/main.css" rel="stylesheet">
-<script
-  src="https://code.jquery.com/jquery-3.7.1.min.js"
-  integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-  crossorigin="anonymous"></script>
-<script defer
-  src="https://unpkg.com/lunr@2.3.9/lunr.min.js"
-  integrity="sha384-203J0SNzyqHby3iU6hzvzltrWi/M41wOP5Gu+BiJMz5nwKykbkUx8Kp7iti0Lpli"
-  crossorigin="anonymous"></script>
-
-  </head>
-  <body class="td-page">
-    <header>
-      <nav class="td-navbar js-navbar-scroll" data-bs-theme="dark">
-<div class="container-fluid flex-column flex-md-row">
-  <a class="navbar-brand" href="/"><span class="navbar-brand__logo navbar-logo"><svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><defs><style>.cls-1{fill:#0f1689}</style></defs><path class="cls-1" d="M136.52938 121.13478c-.572-.54252-1.19462-1.12636-1.81-1.71761-12.61677-12.12115-22.38092-26.13637-28.279-42.702-1.65073-4.63637-2.89692-9.36515-2.67587-14.35871.021-.4739.01959-.94915.05226-1.42214.445-6.44594 4.75912-9.70322 11.05839-8.17669a27.325 27.325.0 015.73149 2.19653c6.89022 3.45538 12.5062 8.56359 17.67051 14.16571a112.52651 112.52651.0 0121.722 33.42965 8.29635 8.29635.0 00.38946.861c.07116.12855.22232.21282.55927.51883A176.357 176.357.0 01241.968 79.06864c-.17651-.8761-.28195-1.54571-.44772-2.2a112.49436 112.49436.0 01-2.65292-36.95637 84.07478 84.07478.0 014.44444-21.76378 31.32555 31.32555.0 015.47651-10.17139 15.687 15.687.0 013.16336-2.82149 7.026 7.026.0 018.03255-.056 17.27854 17.27854.0 015.8402 6.73185A53.05435 53.05435.0 01271.08657 26.508a112.50469 112.50469.0 012.12263 33.00356 95.59806 95.59806.0 01-3.49052 19.91081c7.12171 1.31193 14.20955 2.32869 21.1473 3.97713a186.37909 186.37909.0 0120.44069 6.0033 188.31671 188.31671.0 0119.77023 8.5693c6.34538 3.16433 12.38553 6.94066 18.71757 10.53829.20571-.433.50439-.94982.706-1.50212A108.65959 108.65959.0 01383.40128 60.246a37.75787 37.75787.0 0111.822-6.883 17.24558 17.24558.0 013.67827-.84512c6.264-.71729 8.89351 3.2244 9.35653 7.93183a29.94372 29.94372.0 01-.77381 10.35466A87.90551 87.90551.0 01396.75426 95.492c-6.79016 10.97178-14.85015 20.85494-25.09307 28.83042-.30234.2354-.56784.51814-1.07988.99029a177.77993 177.77993.0 0126.59293 30.88244 10.96227 10.96227.0 01-1.689.29762c-10.59546.015-21.1911-.01829-31.78622.04607a4.004 4.004.0 01-3.17246-1.69 147.87522 147.87522.0 00-88.17776-46.54846 143.35862 143.35862.0 00-30.27955-1.16923 146.40735 146.40735.0 00-82.53728 31.81054 140.06663 140.06663.0 00-16.97616 15.84186 4.72839 4.72839.0 01-3.86326 1.75742c-10.12056-.07028-20.24188-.035-30.36293-.03495h-2.15212c.618-2.408 6.84026-10.93786 13.88352-18.55281C125.31349 132.2744 130.87768 126.8839 136.52938 121.13478z"/><path class="cls-1" d="M394.52934 347.9123a176.63854 176.63854.0 01-23.97343 27.16338c.70941.59068 1.28594 1.07041 1.86212 1.55057A108.31456 108.31456.0 01406.10131 424.772a34.61831 34.61831.0 012.202 14.42026 14.88544 14.88544.0 01-.74786 3.69206 7.20762 7.20762.0 01-8.15793 5.02308 22.23329 22.23329.0 01-6.76276-2.00629 51.23237 51.23237.0 01-9.18151-5.8151 107.59183 107.59183.0 01-32.936-46.7072c-.18746-.51334-.39218-1.0204-.72243-1.87691a194.65008 194.65008.0 01-25.01223 14.00774 181.66925 181.66925.0 01-26.6869 9.72442 187.55649 187.55649.0 01-28.3045 5.38805c.16807.84015.26446 1.5098.43745 2.15907a109.172 109.172.0 012.9708 36.44311 80.804 80.804.0 01-4.42286 22.4773 78.24971 78.24971.0 01-4.16475 8.74473 13.39 13.39.0 01-2.33865 2.97083c-3.98009 4.109-8.73225 4.144-12.61157-.07366a27.28012 27.28012.0 01-3.907-5.61776c-3.07685-5.77569-4.6604-12.056-5.791-18.46021a116.86329 116.86329.0 01-1.35893-26.465 94.4795 94.4795.0 012.88466-19.18513c.14009-.53269.268-1.0696.37134-1.61034.02629-.13754-.06342-.2973-.17067-.73825a176.12108 176.12108.0 01-80.96855-24.99386c-.40992.90921-.76206 1.67473-1.10168 2.44579a110.47729 110.47729.0 01-30.90112 41.42041 38.16071 38.16071.0 01-12.04706 6.95909 12.08987 12.08987.0 01-6.51516.70023 7.11858 7.11858.0 01-5.40329-4.4892c-1.41614-3.424-1.16526-6.985-.68438-10.51691a55.45267 55.45267.0 014.30768-14.25037A112.49985 112.49985.0 01134.88761 380.779c.459-.43461.92981-.857 1.38087-1.29954a3.76029 3.76029.0 00.36534-.65529 178.90466 178.90466.0 01-28.469-31.31672c.98458-.08018 1.64327-.18 2.30205-.1806 10.51436-.00976 21.029.02736 31.54284-.04358a4.70554 4.70554.0 013.70344 1.62615 146.94611 146.94611.0 0039.40276 28.88494 139.94667 139.94667.0 0049.70395 14.77367q70.68048 6.87067 121.59971-42.85452a7.64571 7.64571.0 015.99261-2.44347c9.80139.12121 19.60512.04986 29.408.04986h2.53353z"/><path class="cls-1" d="M350.73576 197.76167c2.78711.0 5.47037.18919 8.11487-.0501 2.9951-.271 5.139.8001 7.32354 2.81308 12.61275 11.62214 25.35732 23.10129 38.05863 34.62729.63855.57948 1.29039 1.14432 2.1101 1.8701.76445-.65718 1.48119-1.24318 2.16483-1.8655Q428.14636 217.27914 447.756 199.37a5.44772 5.44772.0 014.20358-1.64576c3.21888.13038 6.44673.03746 9.8412.03746V303.13036c-1.72309.50368-24.8756.60366-27.63911.0611v-53.362l-.53656-.25427c-9.01079 8.21784-18.0216 16.43564-27.23786 24.8408-9.22584-8.31119-18.34194-16.52347-27.458-24.73577l-.52449.19192c-.023 4.45359-.00774 8.90828-.01046 13.36233q-.00408 6.63942-58e-5 13.27882v26.87211h-27.428C350.45161 301.61243 350.21289 203.72342 350.73576 197.76167z"/><path class="cls-1" d="M97.63436 197.88229h27.26325c.55054 1.75251.65821 102.97139.09469 105.525H97.70468c-.15021-6.70344-.04736-13.38394-.06622-20.06131-.01871-6.62261-.0041-13.24531-.0041-20.03958H63.84679V303.047c-2.05946.61518-25.33374.67417-27.64758.123V197.89436H63.73742v37.18876c1.96793.56844 30.92319.67339 33.872.12942.00818-2.97713.02-6.02646.024-9.0758q.0063-4.7433 94e-5-9.4866.0-4.625.0-9.25C97.63437 204.32179 97.63436 201.24346 97.63436 197.88229z"/><path class="cls-1" d="M157.5757 303.3683V198.1946c1.617-.52913 61.545-.73586 65.46219-.20457v22.41432c-.87869.063-1.7857.18341-2.69279.18454q-16.0086.01994-32.01725.00881h-2.96767v17.43353H218.7067V261.2229H185.65838c-.55339 1.98509-.70531 15.81681-.25622 19.64583.84488.05679 1.75.16952 2.6553.17059q16.00862.01863 32.01727.00822h2.96945V303.3683z"/><path class="cls-1" d="M254.28291 303.40855c-.50074-2.82232-.39948-103.60181.09747-105.51735h27.16208v77.76453c1.17173.06084 2.09122.14921 3.01077.15005q16.128.01468 32.2561.00658c.92562.0 1.85125.0 2.90733.0v27.59622z"/></svg></span><span class="navbar-brand__name">Helm Docs</span></a>
-  <div class="td-navbar-nav-scroll ms-md-auto" id="main_navbar">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link active" href="/docs/"><span>Documentation</span></a>
-      </li>
-      <li class="nav-item dropdown d-none d-lg-block">
-        <div class="dropdown">
-  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Version</a>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="/">next</a></li>
-    <li><a class="dropdown-item" href="/v1.0/">v1.0</a></li>
-    </ul>
-</div></li>
-      <li class="nav-item dropdown d-none d-lg-block">
-        <div class="dropdown">
-  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</a>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="/es/docs/getting-started/configuration/">Español</a></li>
-    </ul>
-</div></li>
-      </ul>
-  </div>
-  <div class="d-none d-lg-block">
-    <div class="td-search td-search--offline">
-  <div class="td-search__icon"></div>
-  <input
-    type="search"
-    class="td-search__input form-control"
-    placeholder="Search this site…"
-    aria-label="Search this site…"
-    autocomplete="off"
-    
-    data-offline-search-index-json-src="/offline-search-index.json"
-    data-offline-search-base-href="/"
-    data-offline-search-max-results="10"
-  >
-</div>
-  </div>
-</div>
-</nav>
-    </header>
-    <div class="container-fluid td-outer">
-      <div class="td-main">
-        <div class="row flex-xl-nowrap">
-          <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
-            <div id="td-sidebar-menu" class="td-sidebar__inner">
-  <form class="td-sidebar__search d-flex align-items-center">
-    <div class="td-search td-search--offline">
-  <div class="td-search__icon"></div>
-  <input
-    type="search"
-    class="td-search__input form-control"
-    placeholder="Search this site…"
-    aria-label="Search this site…"
-    autocomplete="off"
-    
-    data-offline-search-index-json-src="/offline-search-index.json"
-    data-offline-search-base-href="/"
-    data-offline-search-max-results="10"
-  >
-</div>
-    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ms-3 fas fa-bars" type="button" data-bs-toggle="collapse" data-bs-target="#td-section-nav" aria-controls="td-section-nav" aria-expanded="false" aria-label="Toggle section navigation">
-    </button>
-  </form>
-  <nav class="td-sidebar-nav collapse" id="td-section-nav">
-    <div class="td-sidebar-nav__section nav-item dropdown d-block d-lg-none">
-      <div class="dropdown">
-  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</a>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="/es/docs/getting-started/configuration/">Español</a></li>
-    </ul>
-</div>
-    </div>
-    <ul class="td-sidebar-nav__section pe-md-3 ul-0">
-      <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-docs-li">
-  <a href="/docs/" class="align-left ps-0 td-sidebar-link td-sidebar-link__section tree-root" id="m-docs"><span class="">Documentation</span></a>
-  <ul class="ul-1">
-    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-docsgetting-started-li">
-  <a href="/docs/getting-started/" class="align-left ps-0 td-sidebar-link td-sidebar-link__section" id="m-docsgetting-started"><span class="">Getting Started</span></a>
-  <ul class="ul-2 foldable">
-    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsgetting-startedinstallation-li">
-  <a href="/docs/getting-started/installation/" class="align-left ps-0 td-sidebar-link td-sidebar-link__page" id="m-docsgetting-startedinstallation"><span class="">Installation</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-docsgetting-startedconfiguration-li">
-  <a href="/docs/getting-started/configuration/" class="align-left ps-0 active td-sidebar-link td-sidebar-link__page" id="m-docsgetting-startedconfiguration"><span class="td-sidebar-nav-active-item">Configuration</span></a>
-</li>
-  </ul>
-</li>
-  </ul>
-</li>
-    </ul>
-  </nav>
-</div>
-
-          </aside>
-          <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
-            <div class="td-page-meta ms-2 pb-1 pt-2 mb-0">
-<a href="https://github.com/paigecalver/hugo-docsy-test/tree/main/content/en/docs/getting-started/configuration.md" class="td-page-meta--view td-page-meta__view" target="_blank" rel="noopener"><i class="fa-solid fa-file-lines fa-fw"></i> View page source</a>
-  <a href="https://github.com/paigecalver/hugo-docsy-test/edit/main/content/en/docs/getting-started/configuration.md" class="td-page-meta--edit td-page-meta__edit" target="_blank" rel="noopener"><i class="fa-solid fa-pen-to-square fa-fw"></i> Edit this page</a>
-  <a href="https://github.com/paigecalver/hugo-docsy-test/new/main/content/en/docs/getting-started?filename=change-me.md&amp;value=---%0Atitle%3A&#43;%22Long&#43;Page&#43;Title%22%0AlinkTitle%3A&#43;%22Short&#43;Nav&#43;Title%22%0Aweight%3A&#43;100%0Adescription%3A&#43;%3E-%0A&#43;&#43;&#43;&#43;&#43;Page&#43;description&#43;for&#43;heading&#43;and&#43;indexes.%0A---%0A%0A%23%23&#43;Heading%0A%0AEdit&#43;this&#43;template&#43;to&#43;create&#43;your&#43;new&#43;page.%0A%0A%2A&#43;Give&#43;it&#43;a&#43;good&#43;name%2C&#43;ending&#43;in&#43;%60.md%60&#43;-&#43;e.g.&#43;%60getting-started.md%60%0A%2A&#43;Edit&#43;the&#43;%22front&#43;matter%22&#43;section&#43;at&#43;the&#43;top&#43;of&#43;the&#43;page&#43;%28weight&#43;controls&#43;how&#43;its&#43;ordered&#43;amongst&#43;other&#43;pages&#43;in&#43;the&#43;same&#43;directory%3B&#43;lowest&#43;number&#43;first%29.%0A%2A&#43;Add&#43;a&#43;good&#43;commit&#43;message&#43;at&#43;the&#43;bottom&#43;of&#43;the&#43;page&#43;%28%3C80&#43;characters%3B&#43;use&#43;the&#43;extended&#43;description&#43;field&#43;for&#43;more&#43;detail%29.%0A%2A&#43;Create&#43;a&#43;new&#43;branch&#43;so&#43;you&#43;can&#43;preview&#43;your&#43;new&#43;file&#43;and&#43;request&#43;a&#43;review&#43;via&#43;Pull&#43;Request.%0A" class="td-page-meta--child td-page-meta__child" target="_blank" rel="noopener"><i class="fa-solid fa-pen-to-square fa-fw"></i> Create child page</a>
-  <a href="https://github.com/paigecalver/hugo-docsy-test/issues/new?title=Configuration" class="td-page-meta--issue td-page-meta__issue" target="_blank" rel="noopener"><i class="fa-solid fa-list-check fa-fw"></i> Create documentation issue</a>
-  <a id="print" href="/docs/getting-started/_print/"><i class="fa-solid fa-print fa-fw"></i> Print entire section</a>
-
-</div>
-
-            <div class="td-toc">
-        <nav id="TableOfContents">
-  <ul>
-    <li><a href="#site-configuration">Site Configuration</a>
-      <ul>
-        <li><a href="#basic-site-settings">Basic Site Settings</a></li>
-        <li><a href="#site-parameters">Site Parameters</a></li>
-      </ul>
-    </li>
-    <li><a href="#navigation-configuration">Navigation Configuration</a>
-      <ul>
-        <li><a href="#main-navigation">Main Navigation</a></li>
-        <li><a href="#sidebar-navigation">Sidebar Navigation</a></li>
-      </ul>
-    </li>
-    <li><a href="#content-organization">Content Organization</a>
-      <ul>
-        <li><a href="#directory-structure">Directory Structure</a></li>
-        <li><a href="#front-matter">Front Matter</a></li>
-      </ul>
-    </li>
-    <li><a href="#theme-features">Theme Features</a>
-      <ul>
-        <li><a href="#search">Search</a></li>
-        <li><a href="#user-interface">User Interface</a></li>
-      </ul>
-    </li>
-    <li><a href="#next-steps">Next Steps</a></li>
-  </ul>
-</nav>
-      </div>
-    
-            
-	
-          </aside>
-          <main class="col-12 col-md-9 col-xl-8 ps-md-5" role="main">
-            
-  
-
-            <nav aria-label="breadcrumb" class="td-breadcrumbs">
-  <ol class="breadcrumb">
-  <li class="breadcrumb-item">
-    <a href="/docs/">Documentation</a></li>
-  <li class="breadcrumb-item">
-    <a href="/docs/getting-started/">Getting Started</a></li>
-  <li class="breadcrumb-item active" aria-current="page">
-    Configuration</li>
-  </ol>
-</nav>
-<div class="td-content">
-	<h1>Configuration</h1>
-	<div class="lead">Basic configuration options for your Hugo Docsy site</div>
-	<header class="article-meta">
-		
-  </header>
-	<h2 id="site-configuration">Site Configuration</h2>
-<p>Your Hugo Docsy site is configured through the <code>hugo.yaml</code> file in your site&rsquo;s root directory. This file controls everything from basic site information to advanced theme features.</p>
-<h3 id="basic-site-settings">Basic Site Settings</h3>
-<p>The most important settings to configure first:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">baseURL</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">https://your-site.com</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">title</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Your Site Title</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">theme</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">docsy</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># Language settings</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">contentDir</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">content/en</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">defaultContentLanguage</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">en</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">defaultContentLanguageInSubdir</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">false</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span></code></pre></div><h3 id="site-parameters">Site Parameters</h3>
-<p>The <code>params</code> section controls Docsy-specific features:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">params</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># Repository configuration</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">github_repo</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">https://github.com/your-username/your-repo</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">github_branch</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">main</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># Search functionality</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">offlineSearch</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># Copyright information</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">copyright</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">authors</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Your Name | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0) |</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">from_year</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">2024</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span></code></pre></div><h2 id="navigation-configuration">Navigation Configuration</h2>
-<h3 id="main-navigation">Main Navigation</h3>
-<p>The main navigation menu can be configured in two ways:</p>
-<h4 id="1-automatic-recommended">1. Automatic (Recommended)</h4>
-<p>Let Hugo automatically generate navigation from your content structure by using proper front matter weights.</p>
-<h4 id="2-manual-menu-configuration">2. Manual Menu Configuration</h4>
-<p>Define menus explicitly in <code>hugo.yaml</code>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">menu</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">main</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;Documentation&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">url</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;/docs/&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">weight</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">20</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;Blog&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">url</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;/blog/&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">weight</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">30</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span></code></pre></div><h3 id="sidebar-navigation">Sidebar Navigation</h3>
-<p>The documentation sidebar is automatically generated from:</p>
-<ul>
-<li>Directory structure under <code>content/en/docs/</code></li>
-<li>Front matter <code>weight</code> values</li>
-<li><code>_index.md</code> files in each directory</li>
-</ul>
-<h2 id="content-organization">Content Organization</h2>
-<h3 id="directory-structure">Directory Structure</h3>
-<pre tabindex="0"><code>content/
+<!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=en class=no-js><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><link rel="shortcut icon" href=/hugo-docsy-test/favicons/favicon.ico><link rel=apple-touch-icon href=/hugo-docsy-test/favicons/apple-touch-icon-180x180.png sizes=180x180><link rel=icon type=image/png href=/hugo-docsy-test/favicons/favicon-16x16.png sizes=16x16><link rel=icon type=image/png href=/hugo-docsy-test/favicons/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/hugo-docsy-test/favicons/android-36x36.png sizes=36x36><link rel=icon type=image/png href=/hugo-docsy-test/favicons/android-48x48.png sizes=48x48><link rel=icon type=image/png href=/hugo-docsy-test/favicons/android-72x72.png sizes=72x72><link rel=icon type=image/png href=/hugo-docsy-test/favicons/android-96x96.png sizes=96x96><link rel=icon type=image/png href=/hugo-docsy-test/favicons/android-144x144.png sizes=144x144><link rel=icon type=image/png href=/hugo-docsy-test/favicons/android-192x192.png sizes=192x192><title>Configuration | Helm Docs</title><meta name=description content="Basic configuration options for your Hugo Docsy site"><meta property="og:url" content="https://paigecalvert.github.io/hugo-docsy-test/docs/getting-started/configuration/"><meta property="og:site_name" content="Helm Docs"><meta property="og:title" content="Configuration"><meta property="og:description" content="Basic configuration options for your Hugo Docsy site"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2025-06-10T12:30:23-06:00"><meta property="og:image" content="https://paigecalvert.github.io/hugo-docsy-test/images/logo.png"><meta itemprop=name content="Configuration"><meta itemprop=description content="Basic configuration options for your Hugo Docsy site"><meta itemprop=dateModified content="2025-06-10T12:30:23-06:00"><meta itemprop=wordCount content="328"><meta itemprop=image content="https://paigecalvert.github.io/hugo-docsy-test/images/logo.png"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://paigecalvert.github.io/hugo-docsy-test/images/logo.png"><meta name=twitter:title content="Configuration"><meta name=twitter:description content="Basic configuration options for your Hugo Docsy site"><link rel=preload href=/hugo-docsy-test/scss/main.min.7f9474732b1e9b30744676d96cb1995b79f20281eaa7a50f33a829337cc504e5.css as=style integrity="sha256-f5R0cysemzB0RnbZbLGZW3nyAoHqp6UPM6gpM3zFBOU=" crossorigin=anonymous><link href=/hugo-docsy-test/scss/main.min.7f9474732b1e9b30744676d96cb1995b79f20281eaa7a50f33a829337cc504e5.css rel=stylesheet integrity="sha256-f5R0cysemzB0RnbZbLGZW3nyAoHqp6UPM6gpM3zFBOU=" crossorigin=anonymous><script src=https://code.jquery.com/jquery-3.7.1.min.js integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin=anonymous></script><script defer src=https://unpkg.com/lunr@2.3.9/lunr.min.js integrity=sha384-203J0SNzyqHby3iU6hzvzltrWi/M41wOP5Gu+BiJMz5nwKykbkUx8Kp7iti0Lpli crossorigin=anonymous></script></head><body class=td-page><header><nav class="td-navbar js-navbar-scroll" data-bs-theme=dark><div class="container-fluid flex-column flex-md-row"><a class=navbar-brand href=/hugo-docsy-test/><span class="navbar-brand__logo navbar-logo"><svg id="Layer_1" data-name="Layer 1" viewBox="0 0 500 500"><defs><style>.cls-1{fill:#0f1689}</style></defs><path class="cls-1" d="M136.52938 121.13478c-.572-.54252-1.19462-1.12636-1.81-1.71761-12.61677-12.12115-22.38092-26.13637-28.279-42.702-1.65073-4.63637-2.89692-9.36515-2.67587-14.35871.021-.4739.01959-.94915.05226-1.42214.445-6.44594 4.75912-9.70322 11.05839-8.17669a27.325 27.325.0 015.73149 2.19653c6.89022 3.45538 12.5062 8.56359 17.67051 14.16571a112.52651 112.52651.0 0121.722 33.42965 8.29635 8.29635.0 00.38946.861c.07116.12855.22232.21282.55927.51883A176.357 176.357.0 01241.968 79.06864c-.17651-.8761-.28195-1.54571-.44772-2.2a112.49436 112.49436.0 01-2.65292-36.95637 84.07478 84.07478.0 014.44444-21.76378 31.32555 31.32555.0 015.47651-10.17139 15.687 15.687.0 013.16336-2.82149 7.026 7.026.0 018.03255-.056 17.27854 17.27854.0 015.8402 6.73185A53.05435 53.05435.0 01271.08657 26.508a112.50469 112.50469.0 012.12263 33.00356 95.59806 95.59806.0 01-3.49052 19.91081c7.12171 1.31193 14.20955 2.32869 21.1473 3.97713a186.37909 186.37909.0 0120.44069 6.0033 188.31671 188.31671.0 0119.77023 8.5693c6.34538 3.16433 12.38553 6.94066 18.71757 10.53829.20571-.433.50439-.94982.706-1.50212A108.65959 108.65959.0 01383.40128 60.246a37.75787 37.75787.0 0111.822-6.883 17.24558 17.24558.0 013.67827-.84512c6.264-.71729 8.89351 3.2244 9.35653 7.93183a29.94372 29.94372.0 01-.77381 10.35466A87.90551 87.90551.0 01396.75426 95.492c-6.79016 10.97178-14.85015 20.85494-25.09307 28.83042-.30234.2354-.56784.51814-1.07988.99029a177.77993 177.77993.0 0126.59293 30.88244 10.96227 10.96227.0 01-1.689.29762c-10.59546.015-21.1911-.01829-31.78622.04607a4.004 4.004.0 01-3.17246-1.69 147.87522 147.87522.0 00-88.17776-46.54846 143.35862 143.35862.0 00-30.27955-1.16923 146.40735 146.40735.0 00-82.53728 31.81054 140.06663 140.06663.0 00-16.97616 15.84186 4.72839 4.72839.0 01-3.86326 1.75742c-10.12056-.07028-20.24188-.035-30.36293-.03495h-2.15212c.618-2.408 6.84026-10.93786 13.88352-18.55281C125.31349 132.2744 130.87768 126.8839 136.52938 121.13478z"/><path class="cls-1" d="M394.52934 347.9123a176.63854 176.63854.0 01-23.97343 27.16338c.70941.59068 1.28594 1.07041 1.86212 1.55057A108.31456 108.31456.0 01406.10131 424.772a34.61831 34.61831.0 012.202 14.42026 14.88544 14.88544.0 01-.74786 3.69206 7.20762 7.20762.0 01-8.15793 5.02308 22.23329 22.23329.0 01-6.76276-2.00629 51.23237 51.23237.0 01-9.18151-5.8151 107.59183 107.59183.0 01-32.936-46.7072c-.18746-.51334-.39218-1.0204-.72243-1.87691a194.65008 194.65008.0 01-25.01223 14.00774 181.66925 181.66925.0 01-26.6869 9.72442 187.55649 187.55649.0 01-28.3045 5.38805c.16807.84015.26446 1.5098.43745 2.15907a109.172 109.172.0 012.9708 36.44311 80.804 80.804.0 01-4.42286 22.4773 78.24971 78.24971.0 01-4.16475 8.74473 13.39 13.39.0 01-2.33865 2.97083c-3.98009 4.109-8.73225 4.144-12.61157-.07366a27.28012 27.28012.0 01-3.907-5.61776c-3.07685-5.77569-4.6604-12.056-5.791-18.46021a116.86329 116.86329.0 01-1.35893-26.465 94.4795 94.4795.0 012.88466-19.18513c.14009-.53269.268-1.0696.37134-1.61034.02629-.13754-.06342-.2973-.17067-.73825a176.12108 176.12108.0 01-80.96855-24.99386c-.40992.90921-.76206 1.67473-1.10168 2.44579a110.47729 110.47729.0 01-30.90112 41.42041 38.16071 38.16071.0 01-12.04706 6.95909 12.08987 12.08987.0 01-6.51516.70023 7.11858 7.11858.0 01-5.40329-4.4892c-1.41614-3.424-1.16526-6.985-.68438-10.51691a55.45267 55.45267.0 014.30768-14.25037A112.49985 112.49985.0 01134.88761 380.779c.459-.43461.92981-.857 1.38087-1.29954a3.76029 3.76029.0 00.36534-.65529 178.90466 178.90466.0 01-28.469-31.31672c.98458-.08018 1.64327-.18 2.30205-.1806 10.51436-.00976 21.029.02736 31.54284-.04358a4.70554 4.70554.0 013.70344 1.62615 146.94611 146.94611.0 0039.40276 28.88494 139.94667 139.94667.0 0049.70395 14.77367q70.68048 6.87067 121.59971-42.85452a7.64571 7.64571.0 015.99261-2.44347c9.80139.12121 19.60512.04986 29.408.04986h2.53353z"/><path class="cls-1" d="M350.73576 197.76167c2.78711.0 5.47037.18919 8.11487-.0501 2.9951-.271 5.139.8001 7.32354 2.81308 12.61275 11.62214 25.35732 23.10129 38.05863 34.62729.63855.57948 1.29039 1.14432 2.1101 1.8701.76445-.65718 1.48119-1.24318 2.16483-1.8655Q428.14636 217.27914 447.756 199.37a5.44772 5.44772.0 014.20358-1.64576c3.21888.13038 6.44673.03746 9.8412.03746V303.13036c-1.72309.50368-24.8756.60366-27.63911.0611v-53.362l-.53656-.25427c-9.01079 8.21784-18.0216 16.43564-27.23786 24.8408-9.22584-8.31119-18.34194-16.52347-27.458-24.73577l-.52449.19192c-.023 4.45359-.00774 8.90828-.01046 13.36233q-.00408 6.63942-58e-5 13.27882v26.87211h-27.428C350.45161 301.61243 350.21289 203.72342 350.73576 197.76167z"/><path class="cls-1" d="M97.63436 197.88229h27.26325c.55054 1.75251.65821 102.97139.09469 105.525H97.70468c-.15021-6.70344-.04736-13.38394-.06622-20.06131-.01871-6.62261-.0041-13.24531-.0041-20.03958H63.84679V303.047c-2.05946.61518-25.33374.67417-27.64758.123V197.89436H63.73742v37.18876c1.96793.56844 30.92319.67339 33.872.12942.00818-2.97713.02-6.02646.024-9.0758q.0063-4.7433 94e-5-9.4866.0-4.625.0-9.25C97.63437 204.32179 97.63436 201.24346 97.63436 197.88229z"/><path class="cls-1" d="M157.5757 303.3683V198.1946c1.617-.52913 61.545-.73586 65.46219-.20457v22.41432c-.87869.063-1.7857.18341-2.69279.18454q-16.0086.01994-32.01725.00881h-2.96767v17.43353H218.7067V261.2229H185.65838c-.55339 1.98509-.70531 15.81681-.25622 19.64583.84488.05679 1.75.16952 2.6553.17059q16.00862.01863 32.01727.00822h2.96945V303.3683z"/><path class="cls-1" d="M254.28291 303.40855c-.50074-2.82232-.39948-103.60181.09747-105.51735h27.16208v77.76453c1.17173.06084 2.09122.14921 3.01077.15005q16.128.01468 32.2561.00658c.92562.0 1.85125.0 2.90733.0v27.59622z"/></svg></span><span class=navbar-brand__name>Helm Docs</span></a><div class="td-navbar-nav-scroll ms-md-auto" id=main_navbar><ul class=navbar-nav><li class=nav-item><a class="nav-link active" href=/hugo-docsy-test/docs/><span>Documentation</span></a></li><li class="nav-item dropdown d-none d-lg-block"><div class=dropdown><a class="nav-link dropdown-toggle" href=# role=button data-bs-toggle=dropdown aria-haspopup=true aria-expanded=false>Version</a><ul class=dropdown-menu><li><a class=dropdown-item href=/>next</a></li><li><a class=dropdown-item href=/v1.0/>v1.0</a></li></ul></div></li><li class="nav-item dropdown d-none d-lg-block"><div class=dropdown><a class="nav-link dropdown-toggle" href=# role=button data-bs-toggle=dropdown aria-haspopup=true aria-expanded=false>English</a><ul class=dropdown-menu><li><a class=dropdown-item href=/hugo-docsy-test/es/docs/getting-started/configuration/>Español</a></li></ul></div></li></ul></div><div class="d-none d-lg-block"><div class="td-search td-search--offline"><div class=td-search__icon></div><input type=search class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/hugo-docsy-test/offline-search-index.873182acabace0740ffaec7d2fd1c878.json data-offline-search-base-href=/ data-offline-search-max-results=10></div></div></div></nav></header><div class="container-fluid td-outer"><div class=td-main><div class="row flex-xl-nowrap"><aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none"><div id=td-sidebar-menu class=td-sidebar__inner><form class="td-sidebar__search d-flex align-items-center"><div class="td-search td-search--offline"><div class=td-search__icon></div><input type=search class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/hugo-docsy-test/offline-search-index.873182acabace0740ffaec7d2fd1c878.json data-offline-search-base-href=/ data-offline-search-max-results=10></div><button class="btn btn-link td-sidebar__toggle d-md-none p-0 ms-3 fas fa-bars" type=button data-bs-toggle=collapse data-bs-target=#td-section-nav aria-controls=td-section-nav aria-expanded=false aria-label="Toggle section navigation"></button></form><nav class="td-sidebar-nav collapse" id=td-section-nav><div class="td-sidebar-nav__section nav-item dropdown d-block d-lg-none"><div class=dropdown><a class="nav-link dropdown-toggle" href=# role=button data-bs-toggle=dropdown aria-haspopup=true aria-expanded=false>English</a><ul class=dropdown-menu><li><a class=dropdown-item href=/hugo-docsy-test/es/docs/getting-started/configuration/>Español</a></li></ul></div></div><ul class="td-sidebar-nav__section pe-md-3 ul-0"><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-hugo-docsy-testdocs-li><a href=/hugo-docsy-test/docs/ class="align-left ps-0 td-sidebar-link td-sidebar-link__section tree-root" id=m-hugo-docsy-testdocs><span>Documentation</span></a><ul class=ul-1><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-hugo-docsy-testdocsgetting-started-li><a href=/hugo-docsy-test/docs/getting-started/ class="align-left ps-0 td-sidebar-link td-sidebar-link__section" id=m-hugo-docsy-testdocsgetting-started><span>Getting Started</span></a><ul class="ul-2 foldable"><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-hugo-docsy-testdocsgetting-startedinstallation-li><a href=/hugo-docsy-test/docs/getting-started/installation/ class="align-left ps-0 td-sidebar-link td-sidebar-link__page" id=m-hugo-docsy-testdocsgetting-startedinstallation><span>Installation</span></a></li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id=m-hugo-docsy-testdocsgetting-startedconfiguration-li><a href=/hugo-docsy-test/docs/getting-started/configuration/ class="align-left ps-0 active td-sidebar-link td-sidebar-link__page" id=m-hugo-docsy-testdocsgetting-startedconfiguration><span class=td-sidebar-nav-active-item>Configuration</span></a></li></ul></li></ul></li></ul></nav></div></aside><aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none"><div class="td-page-meta ms-2 pb-1 pt-2 mb-0"><a href=https://github.com/paigecalver/hugo-docsy-test/tree/main/content/en/docs/getting-started/configuration.md class="td-page-meta--view td-page-meta__view" target=_blank rel=noopener><i class="fa-solid fa-file-lines fa-fw"></i> View page source</a>
+<a href=https://github.com/paigecalver/hugo-docsy-test/edit/main/content/en/docs/getting-started/configuration.md class="td-page-meta--edit td-page-meta__edit" target=_blank rel=noopener><i class="fa-solid fa-pen-to-square fa-fw"></i> Edit this page</a>
+<a href="https://github.com/paigecalver/hugo-docsy-test/new/main/content/en/docs/getting-started?filename=change-me.md&amp;value=---%0Atitle%3A+%22Long+Page+Title%22%0AlinkTitle%3A+%22Short+Nav+Title%22%0Aweight%3A+100%0Adescription%3A+%3E-%0A+++++Page+description+for+heading+and+indexes.%0A---%0A%0A%23%23+Heading%0A%0AEdit+this+template+to+create+your+new+page.%0A%0A%2A+Give+it+a+good+name%2C+ending+in+%60.md%60+-+e.g.+%60getting-started.md%60%0A%2A+Edit+the+%22front+matter%22+section+at+the+top+of+the+page+%28weight+controls+how+its+ordered+amongst+other+pages+in+the+same+directory%3B+lowest+number+first%29.%0A%2A+Add+a+good+commit+message+at+the+bottom+of+the+page+%28%3C80+characters%3B+use+the+extended+description+field+for+more+detail%29.%0A%2A+Create+a+new+branch+so+you+can+preview+your+new+file+and+request+a+review+via+Pull+Request.%0A" class="td-page-meta--child td-page-meta__child" target=_blank rel=noopener><i class="fa-solid fa-pen-to-square fa-fw"></i> Create child page</a>
+<a href="https://github.com/paigecalver/hugo-docsy-test/issues/new?title=Configuration" class="td-page-meta--issue td-page-meta__issue" target=_blank rel=noopener><i class="fa-solid fa-list-check fa-fw"></i> Create documentation issue</a>
+<a id=print href=/hugo-docsy-test/docs/getting-started/_print/><i class="fa-solid fa-print fa-fw"></i> Print entire section</a></div><div class=td-toc><nav id=TableOfContents><ul><li><a href=#site-configuration>Site Configuration</a><ul><li><a href=#basic-site-settings>Basic Site Settings</a></li><li><a href=#site-parameters>Site Parameters</a></li></ul></li><li><a href=#navigation-configuration>Navigation Configuration</a><ul><li><a href=#main-navigation>Main Navigation</a></li><li><a href=#sidebar-navigation>Sidebar Navigation</a></li></ul></li><li><a href=#content-organization>Content Organization</a><ul><li><a href=#directory-structure>Directory Structure</a></li><li><a href=#front-matter>Front Matter</a></li></ul></li><li><a href=#theme-features>Theme Features</a><ul><li><a href=#search>Search</a></li><li><a href=#user-interface>User Interface</a></li></ul></li><li><a href=#next-steps>Next Steps</a></li></ul></nav></div></aside><main class="col-12 col-md-9 col-xl-8 ps-md-5" role=main><nav aria-label=breadcrumb class=td-breadcrumbs><ol class=breadcrumb><li class=breadcrumb-item><a href=/hugo-docsy-test/docs/>Documentation</a></li><li class=breadcrumb-item><a href=/hugo-docsy-test/docs/getting-started/>Getting Started</a></li><li class="breadcrumb-item active" aria-current=page>Configuration</li></ol></nav><div class=td-content><h1>Configuration</h1><div class=lead>Basic configuration options for your Hugo Docsy site</div><header class=article-meta></header><h2 id=site-configuration>Site Configuration</h2><p>Your Hugo Docsy site is configured through the <code>hugo.yaml</code> file in your site&rsquo;s root directory. This file controls everything from basic site information to advanced theme features.</p><h3 id=basic-site-settings>Basic Site Settings</h3><p>The most important settings to configure first:</p><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#204a87;font-weight:700>baseURL</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>https://your-site.com</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline></span><span style=color:#204a87;font-weight:700>title</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>Your Site Title</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline></span><span style=color:#204a87;font-weight:700>theme</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>docsy</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline></span><span style=color:#8f5902;font-style:italic># Language settings</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline></span><span style=color:#204a87;font-weight:700>contentDir</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>content/en</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline></span><span style=color:#204a87;font-weight:700>defaultContentLanguage</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>en</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline></span><span style=color:#204a87;font-weight:700>defaultContentLanguageInSubdir</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#204a87;font-weight:700>false</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span></code></pre></div><h3 id=site-parameters>Site Parameters</h3><p>The <code>params</code> section controls Docsy-specific features:</p><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#204a87;font-weight:700>params</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#8f5902;font-style:italic># Repository configuration</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#204a87;font-weight:700>github_repo</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>https://github.com/your-username/your-repo</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#204a87;font-weight:700>github_branch</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>main</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>  
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#8f5902;font-style:italic># Search functionality</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#204a87;font-weight:700>offlineSearch</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#204a87;font-weight:700>true</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>  
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#8f5902;font-style:italic># Copyright information</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#204a87;font-weight:700>copyright</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>authors</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>Your Name | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0) |</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>from_year</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#0000cf;font-weight:700>2024</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span></code></pre></div><h2 id=navigation-configuration>Navigation Configuration</h2><h3 id=main-navigation>Main Navigation</h3><p>The main navigation menu can be configured in two ways:</p><h4 id=1-automatic-recommended>1. Automatic (Recommended)</h4><p>Let Hugo automatically generate navigation from your content structure by using proper front matter weights.</p><h4 id=2-manual-menu-configuration>2. Manual Menu Configuration</h4><p>Define menus explicitly in <code>hugo.yaml</code>:</p><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#204a87;font-weight:700>menu</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#204a87;font-weight:700>main</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>    </span>- <span style=color:#204a87;font-weight:700>name</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;Documentation&#34;</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#204a87;font-weight:700>url</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;/docs/&#34;</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#204a87;font-weight:700>weight</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#0000cf;font-weight:700>20</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>    </span>- <span style=color:#204a87;font-weight:700>name</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;Blog&#34;</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#204a87;font-weight:700>url</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;/blog/&#34;</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#204a87;font-weight:700>weight</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#0000cf;font-weight:700>30</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span></code></pre></div><h3 id=sidebar-navigation>Sidebar Navigation</h3><p>The documentation sidebar is automatically generated from:</p><ul><li>Directory structure under <code>content/en/docs/</code></li><li>Front matter <code>weight</code> values</li><li><code>_index.md</code> files in each directory</li></ul><h2 id=content-organization>Content Organization</h2><h3 id=directory-structure>Directory Structure</h3><pre tabindex=0><code>content/
 └── en/
     ├── _index.md          # Homepage
     ├── docs/
@@ -276,115 +43,23 @@
     │       └── _index.md
     └── blog/
         └── _index.md
-</code></pre><h3 id="front-matter">Front Matter</h3>
-<p>Each content file should include proper front matter:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#000">---</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">title</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;Page Title&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">linkTitle</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;Short Title&#34;</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># Used in navigation</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">weight</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">10</span><span style="color:#f8f8f8;text-decoration:underline">               </span><span style="color:#8f5902;font-style:italic"># Controls ordering</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">description</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">&gt;</span><span style="color:#8f5902;font-style:italic">
-</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">  Brief description for SEO and page listings</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">---</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span></code></pre></div><h2 id="theme-features">Theme Features</h2>
-<h3 id="search">Search</h3>
-<p>Enable offline search (recommended for most sites):</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">params</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">offlineSearch</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span></code></pre></div><p>For larger sites, consider using Algolia:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">params</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">gcs_engine_id</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">your-search-engine-id</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span></code></pre></div><h3 id="user-interface">User Interface</h3>
-<p>Customize the UI behavior:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">params</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">ui</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">breadcrumb_disable</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">false</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">navbar_logo</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">sidebar_menu_compact</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">false</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">sidebar_search_disable</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">false</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span></code></pre></div><h2 id="next-steps">Next Steps</h2>
-<p>With your basic configuration complete, you&rsquo;re ready to start <a href="../content-creation/">Creating Content</a> for your site.</p>
-
-
-<div class="alert alert-info" role="alert">
-<h4 class="alert-heading">Tip</h4>
-
-    Remember to restart your Hugo development server (<code>hugo server -D</code>) after making configuration changes to see the updates.
-
-</div>
-
-
-	<div class="td-page-meta__lastmod">
-  Last modified June 10, 2025: <a data-proofer-ignore href="https://github.com/paigecalver/hugo-docsy-test/commit/453a7991f31418a98d8001184daccbbbffddb79d">adding sample content and styles (453a799)</a>
-</div>
-
-</div>
-
-
-          </main>
-        </div>
-      </div>
-      <footer class="td-footer row d-print-none">
-  <div class="container-fluid">
-    <div class="row mx-md-2">
-      <div class="td-footer__left col-6 col-sm-4 order-sm-1">
-        <ul class="td-footer__links-list">
-  
-  <li class="td-footer__links-item" data-bs-toggle="tooltip" title="User mailing list" aria-label="User mailing list">
-    <a target="_blank" rel="noopener" href="https://example.org/mail" aria-label="User mailing list">
-      <i class="fa fa-envelope"></i>
-    </a>
-  </li>
-  
-  <li class="td-footer__links-item" data-bs-toggle="tooltip" title="Twitter" aria-label="Twitter">
-    <a target="_blank" rel="noopener" href="https://example.org/twitter" aria-label="Twitter">
-      <i class="fab fa-twitter"></i>
-    </a>
-  </li>
-  
-  <li class="td-footer__links-item" data-bs-toggle="tooltip" title="Stack Overflow" aria-label="Stack Overflow">
-    <a target="_blank" rel="noopener" href="https://example.org/stack" aria-label="Stack Overflow">
-      <i class="fab fa-stack-overflow"></i>
-    </a>
-  </li>
-  
-</ul>
-
-      </div><div class="td-footer__right col-6 col-sm-4 order-sm-3">
-        <ul class="td-footer__links-list">
-  
-  <li class="td-footer__links-item" data-bs-toggle="tooltip" title="GitHub" aria-label="GitHub">
-    <a target="_blank" rel="noopener" href="https://github.com/google/docsy" aria-label="GitHub">
-      <i class="fab fa-github"></i>
-    </a>
-  </li>
-  
-  <li class="td-footer__links-item" data-bs-toggle="tooltip" title="Slack" aria-label="Slack">
-    <a target="_blank" rel="noopener" href="https://example.org/slack" aria-label="Slack">
-      <i class="fab fa-slack"></i>
-    </a>
-  </li>
-  
-  <li class="td-footer__links-item" data-bs-toggle="tooltip" title="Developer mailing list" aria-label="Developer mailing list">
-    <a target="_blank" rel="noopener" href="https://example.org/mail" aria-label="Developer mailing list">
-      <i class="fa fa-envelope"></i>
-    </a>
-  </li>
-  
-</ul>
-
-      </div><div class="td-footer__center col-12 col-sm-4 py-2 order-sm-2">
-        <span class="td-footer__copyright">&copy;
-    2024&ndash;2025
-    <span class="td-footer__authors">Your Name | <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a> |</span></span><span class="td-footer__all_rights_reserved">All Rights Reserved</span><span class="ms-2"><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a></span>
-      </div>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <script src="/js/main.js"></script>
-<script defer src="/js/click-to-copy.js" crossorigin="anonymous"></script>
-<script src='/js/tabpane-persist.js'></script>
-
-  </body>
-</html>
+</code></pre><h3 id=front-matter>Front Matter</h3><p>Each content file should include proper front matter:</p><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#000>---</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline></span><span style=color:#204a87;font-weight:700>title</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;Page Title&#34;</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline></span><span style=color:#204a87;font-weight:700>linkTitle</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;Short Title&#34;</span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#8f5902;font-style:italic># Used in navigation</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline></span><span style=color:#204a87;font-weight:700>weight</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#0000cf;font-weight:700>10</span><span style=color:#f8f8f8;text-decoration:underline>               </span><span style=color:#8f5902;font-style:italic># Controls ordering</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline></span><span style=color:#204a87;font-weight:700>description</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000;font-weight:700>&gt;</span><span style=color:#8f5902;font-style:italic>
+</span></span></span><span style=display:flex><span><span style=color:#8f5902;font-style:italic>  Brief description for SEO and page listings</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline></span><span style=color:#000>---</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span></code></pre></div><h2 id=theme-features>Theme Features</h2><h3 id=search>Search</h3><p>Enable offline search (recommended for most sites):</p><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#204a87;font-weight:700>params</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#204a87;font-weight:700>offlineSearch</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#204a87;font-weight:700>true</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span></code></pre></div><p>For larger sites, consider using Algolia:</p><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#204a87;font-weight:700>params</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#204a87;font-weight:700>gcs_engine_id</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>your-search-engine-id</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span></code></pre></div><h3 id=user-interface>User Interface</h3><p>Customize the UI behavior:</p><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#204a87;font-weight:700>params</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#204a87;font-weight:700>ui</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>breadcrumb_disable</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#204a87;font-weight:700>false</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>navbar_logo</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#204a87;font-weight:700>true</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>sidebar_menu_compact</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#204a87;font-weight:700>false</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span><span style=display:flex><span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>sidebar_search_disable</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#204a87;font-weight:700>false</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></span></span></code></pre></div><h2 id=next-steps>Next Steps</h2><p>With your basic configuration complete, you&rsquo;re ready to start <a href=../content-creation/>Creating Content</a> for your site.</p><div class="alert alert-info" role=alert><h4 class=alert-heading>Tip</h4>Remember to restart your Hugo development server (<code>hugo server -D</code>) after making configuration changes to see the updates.</div><div class=td-page-meta__lastmod>Last modified June 10, 2025: <a data-proofer-ignore href=https://github.com/paigecalver/hugo-docsy-test/commit/453a7991f31418a98d8001184daccbbbffddb79d>adding sample content and styles (453a799)</a></div></div></main></div></div><footer class="td-footer row d-print-none"><div class=container-fluid><div class="row mx-md-2"><div class="td-footer__left col-6 col-sm-4 order-sm-1"><ul class=td-footer__links-list><li class=td-footer__links-item data-bs-toggle=tooltip title="User mailing list" aria-label="User mailing list"><a target=_blank rel=noopener href=https://example.org/mail aria-label="User mailing list"><i class="fa fa-envelope"></i></a></li><li class=td-footer__links-item data-bs-toggle=tooltip title=Twitter aria-label=Twitter><a target=_blank rel=noopener href=https://example.org/twitter aria-label=Twitter><i class="fab fa-twitter"></i></a></li><li class=td-footer__links-item data-bs-toggle=tooltip title="Stack Overflow" aria-label="Stack Overflow"><a target=_blank rel=noopener href=https://example.org/stack aria-label="Stack Overflow"><i class="fab fa-stack-overflow"></i></a></li></ul></div><div class="td-footer__right col-6 col-sm-4 order-sm-3"><ul class=td-footer__links-list><li class=td-footer__links-item data-bs-toggle=tooltip title=GitHub aria-label=GitHub><a target=_blank rel=noopener href=https://github.com/google/docsy aria-label=GitHub><i class="fab fa-github"></i></a></li><li class=td-footer__links-item data-bs-toggle=tooltip title=Slack aria-label=Slack><a target=_blank rel=noopener href=https://example.org/slack aria-label=Slack><i class="fab fa-slack"></i></a></li><li class=td-footer__links-item data-bs-toggle=tooltip title="Developer mailing list" aria-label="Developer mailing list"><a target=_blank rel=noopener href=https://example.org/mail aria-label="Developer mailing list"><i class="fa fa-envelope"></i></a></li></ul></div><div class="td-footer__center col-12 col-sm-4 py-2 order-sm-2"><span class=td-footer__copyright>&copy;
+2024&ndash;2025
+<span class=td-footer__authors>Your Name | <a href=https://creativecommons.org/licenses/by/4.0>CC BY 4.0</a> |</span></span><span class=td-footer__all_rights_reserved>All Rights Reserved</span><span class=ms-2><a href=https://policies.google.com/privacy target=_blank rel=noopener>Privacy Policy</a></span></div></div></div></footer></div><script src=/hugo-docsy-test/js/main.min.403ff095218c662472dab60ed98ecbb19431682de5ac7c6159891241cd366af5.js integrity="sha256-QD/wlSGMZiRy2rYO2Y7LsZQxaC3lrHxhWYkSQc02avU=" crossorigin=anonymous></script><script defer src=/hugo-docsy-test/js/click-to-copy.min.73478a7d4807698aed7e355eb23f9890ca18fea3158604c8471746d046702bad.js integrity="sha256-c0eKfUgHaYrtfjVesj+YkMoY/qMVhgTIRxdG0EZwK60=" crossorigin=anonymous></script><script src=/hugo-docsy-test/js/tabpane-persist.js></script></body></html>

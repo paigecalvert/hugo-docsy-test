@@ -20147,7 +20147,8 @@ div.drawioframe {
   padding: 0 0 0 1ex; }
 
 .td-card .card-body pre {
-  margin: 0; }
+  margin: 0;
+  padding: 0 1rem 1rem 1rem; }
 
 .swagger-ui .info .title small pre, .swagger-ui .info .title .small pre, .swagger-ui .info .title .td-footer__center pre, .swagger-ui .info .title .td-cover-block > .byline pre {
   background: #7d8492; }

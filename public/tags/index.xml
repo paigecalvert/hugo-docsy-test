@@ -1,11 +1,1 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Tags on Helm Docs</title>
-    <link>http://localhost:57793/tags/</link>
-    <description>Recent content in Tags on Helm Docs</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <atom:link href="http://localhost:57793/tags/index.xml" rel="self" type="application/rss+xml" />
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tags on Helm Docs</title><link>https://paigecalvert.github.io/hugo-docsy-test/tags/</link><description>Recent content in Tags on Helm Docs</description><generator>Hugo</generator><language>en</language><atom:link href="https://paigecalvert.github.io/hugo-docsy-test/tags/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
