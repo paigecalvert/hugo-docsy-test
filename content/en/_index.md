@@ -1,27 +1,27 @@
 ---
-title: "My Hugo Docsy Site"
+title: "My Hugo Docsy Site - Version 1.0"
 linkTitle: "Home"
 ---
 
-{{< blocks/cover title="Welcome to My Hugo Docsy Site" image_anchor="top" height="full" >}}
+{{< blocks/cover title="Welcome to My Hugo Docsy Site v1.0" image_anchor="top" height="full" >}}
 <a class="btn btn-lg btn-primary me-3 mb-4" href="/docs/">
   Learn More <i class="fas fa-arrow-alt-circle-right ms-2"></i>
 </a>
 <a class="btn btn-lg btn-secondary me-3 mb-4" href="https://github.com/your-username/your-repo">
   Download <i class="fab fa-github ms-2 "></i>
 </a>
-<p class="lead mt-5">A modern documentation site built with Hugo and the Docsy theme!</p>
+<p class="lead mt-5">Version 1.0 - A stable release of our documentation site built with Hugo and the Docsy theme!</p>
 {{< /blocks/cover >}}
 
 {{% blocks/lead color="primary" %}}
-This is a sample homepage for your Hugo Docsy site. You can customize this content to introduce your project, product, or documentation.
+This is **Version 1.0** of your Hugo Docsy site. This version represents a stable release with core features and documentation.
 
 The Docsy theme provides a clean, professional layout perfect for technical documentation, project sites, and more.
 {{% /blocks/lead %}}
 
 {{% blocks/section color="dark" type="row" %}}
-{{% blocks/feature icon="fa-lightbulb" title="Easy to Use" %}}
-Hugo generates static sites quickly and efficiently. The Docsy theme makes it easy to create beautiful documentation.
+{{% blocks/feature icon="fa-lightbulb" title="Stable & Tested" %}}
+Version 1.0 includes all the core features that have been thoroughly tested and documented.
 {{% /blocks/feature %}}
 
 {{% blocks/feature icon="fab fa-github" title="Open Source" %}}
@@ -35,9 +35,25 @@ Join the Hugo community and contribute to making documentation better for everyo
 
 {{% blocks/section color="white" %}}
 
-## Typography Showcase
+## Version 1.0 Features
 
-Here's how your custom fonts look in action:
+This version includes:
+
+### Core Documentation
+- Complete getting started guide
+- Installation instructions
+- Basic configuration options
+- Content creation guidelines
+
+### Stable Features
+- Multi-language support (English/Spanish)
+- Search functionality
+- Responsive design
+- SEO optimization
+
+### Typography Showcase
+
+Here's how your custom fonts look in Version 1.0:
 
 ### Space Mono Headings
 # Heading 1 - Space Mono Bold
