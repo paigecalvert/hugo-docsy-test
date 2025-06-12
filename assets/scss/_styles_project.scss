@@ -25,10 +25,11 @@ body, p, .lead, .text-body {
 
 // Custom navbar styling with topography background
 .td-navbar {
-  background-image: url('/images/topography.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: none;
+  // background-image: url('/images/topography.png');
+  // background-size: cover;
+  // background-position: center;
+  // background-repeat: no-repeat;
 }  
   
   // Ensure navbar brand (logo/title) is visible
