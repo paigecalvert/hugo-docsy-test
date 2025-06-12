@@ -1,11 +1,14 @@
-# Sample workflow for building and deploying a Hugo site to GitHub Pages
-name: Deploy Hugo site to Pages
+# Simple multi-version Hugo site deployment to GitHub Pages
+name: Deploy Multi-Version Hugo site to Pages
 
 on:
-  # Runs on pushes targeting the default branch
+  # Runs on pushes to any version branch
   push:
     branches:
-      - main
+      - main      # Latest/current version
+      - v1.0      # Version 1.0
+      - v2.0      # Version 2.0
+      # Add more version branches as needed
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -28,7 +31,7 @@ defaults:
     shell: bash
 
 jobs:
-  # Build job
+  # Build job - only builds the current branch
   build:
     runs-on: ubuntu-latest
     env:
@@ -40,10 +43,6 @@ jobs:
           && sudo dpkg -i ${{ runner.temp }}/hugo.deb          
       - name: Install Dart Sass
         run: sudo snap install dart-sass
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
@@ -51,24 +50,87 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+      
+      # Determine current branch and version path
+      - name: Determine version info
+        id: version
+        run: |
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
+          
+          if [ "$BRANCH_NAME" = "main" ]; then
+            echo "path=." >> $GITHUB_OUTPUT
+            echo "base_url=${{ steps.pages.outputs.base_url }}/" >> $GITHUB_OUTPUT
+          else
+            echo "path=$BRANCH_NAME" >> $GITHUB_OUTPUT
+            echo "base_url=${{ steps.pages.outputs.base_url }}/$BRANCH_NAME/" >> $GITHUB_OUTPUT
+          fi
+          
+          echo "Building branch: $BRANCH_NAME"
+          echo "Deploy path: $([ "$BRANCH_NAME" = "main" ] && echo "root" || echo "$BRANCH_NAME")"
+      
+      # Checkout current branch
+      - name: Checkout current branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      # Build current version
       - name: Install Node.js dependencies
         run: npm ci
       - name: Download Hugo modules
         run: hugo mod tidy
-      - name: Build with Hugo
+      - name: Build current version
         env:
-          # For maximum backward compatibility with Hugo modules
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
         run: |
           hugo \
             --gc \
             --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"          
+            --baseURL "${{ steps.version.outputs.base_url }}"
+      
+      # Download existing site (if it exists) to preserve other versions
+      - name: Download existing site
+        continue-on-error: true
+        run: |
+          # Create combined public directory
+          mkdir -p combined_public
+          
+          # Try to download existing site to preserve other versions
+          echo "Attempting to download existing site..."
+          
+          # Download main version if we're not building main
+          if [ "${{ steps.version.outputs.branch }}" != "main" ]; then
+            echo "Downloading main version..."
+            wget -r -np -nH -nd -P combined_public/ -A "*.html,*.css,*.js,*.png,*.jpg,*.svg,*.ico,*.json,*.xml" "${{ steps.pages.outputs.base_url }}/" || echo "Main version not found or first deployment"
+          fi
+          
+          # Download other version directories (but skip the one we're currently building)
+          for version in v1.0 v2.0; do
+            if [ "$version" != "${{ steps.version.outputs.branch }}" ]; then
+              echo "Downloading $version..."
+              mkdir -p "combined_public/$version"
+              wget -r -np -nH -nd -P "combined_public/$version/" -A "*.html,*.css,*.js,*.png,*.jpg,*.svg,*.ico,*.json,*.xml" "${{ steps.pages.outputs.base_url }}/$version/" || echo "$version not found"
+            fi
+          done
+      
+      # Copy current build to appropriate location
+      - name: Copy current build
+        run: |
+          if [ "${{ steps.version.outputs.path }}" = "." ]; then
+            # Copy to root, but preserve any existing version subdirectories
+            cp -r public/* combined_public/
+          else
+            # Copy to version subdirectory
+            mkdir -p "combined_public/${{ steps.version.outputs.path }}"
+            cp -r public/* "combined_public/${{ steps.version.outputs.path }}/"
+          fi
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: ./combined_public
 
   # Deployment job
   deploy:
