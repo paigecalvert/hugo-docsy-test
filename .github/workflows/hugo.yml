@@ -31,7 +31,7 @@ defaults:
     shell: bash
 
 jobs:
-  # Build job - builds the current branch and combines with existing versions
+  # Build job - builds ALL versions to ensure consistency
   build:
     runs-on: ubuntu-latest
     env:
@@ -51,134 +51,72 @@ jobs:
         with:
           node-version: '20'
       
-      # Determine current branch and version path
-      - name: Determine version info
-        id: version
+      # Create deployment directory
+      - name: Create deployment directory
+        run: mkdir -p deployment
+      
+      # Build main version
+      - name: Build main version
         run: |
-          BRANCH_NAME=${GITHUB_REF#refs/heads/}
-          echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
-          
-          if [ "$BRANCH_NAME" = "main" ]; then
-            echo "path=." >> $GITHUB_OUTPUT
-            echo "base_url=${{ steps.pages.outputs.base_url }}/" >> $GITHUB_OUTPUT
-          else
-            echo "path=$BRANCH_NAME" >> $GITHUB_OUTPUT
-            echo "base_url=${{ steps.pages.outputs.base_url }}/$BRANCH_NAME/" >> $GITHUB_OUTPUT
-          fi
-          
-          echo "Building branch: $BRANCH_NAME"
-          echo "Deploy path: $([ "$BRANCH_NAME" = "main" ] && echo "root" || echo "$BRANCH_NAME")"
+          echo "Building main version..."
+          git clone --depth 1 --branch main ${{ github.server_url }}/${{ github.repository }} main-build
+          cd main-build
+          npm ci
+          hugo mod tidy
+          hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+          cp -r public/* ../deployment/
+          cd ..
+          rm -rf main-build
+          echo "Main version built and copied to root"
       
-      # Checkout current branch
-      - name: Checkout current branch
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      
-      # Build current version
-      - name: Install Node.js dependencies
-        run: npm ci
-      - name: Download Hugo modules
-        run: hugo mod tidy
-      - name: Build current version
-        env:
-          HUGO_ENVIRONMENT: production
-          HUGO_ENV: production
+      # Build v1.0 version
+      - name: Build v1.0 version
         run: |
-          hugo \
-            --gc \
-            --minify \
-            --baseURL "${{ steps.version.outputs.base_url }}"
+          echo "Building v1.0 version..."
+          git clone --depth 1 --branch v1.0 ${{ github.server_url }}/${{ github.repository }} v1.0-build
+          cd v1.0-build
+          npm ci
+          hugo mod tidy
+          hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/v1.0/"
+          mkdir -p ../deployment/v1.0
+          cp -r public/* ../deployment/v1.0/
+          cd ..
+          rm -rf v1.0-build
+          echo "v1.0 version built and copied to /v1.0/"
       
-      # Download existing site from GitHub Pages
-      - name: Download existing site
+      # Build v2.0 version (if branch exists)
+      - name: Build v2.0 version
         continue-on-error: true
         run: |
-          echo "Downloading existing site to preserve other versions..."
-          mkdir -p combined_public
-          
-          # Download the current live site using wget
-          SITE_URL="${{ steps.pages.outputs.base_url }}"
-          echo "Site URL: $SITE_URL"
-          
-          # Download with wget, following redirects and preserving directory structure
-          wget --recursive \
-               --no-parent \
-               --no-host-directories \
-               --cut-dirs=1 \
-               --reject="index.html*" \
-               --directory-prefix=combined_public \
-               --timeout=10 \
-               --tries=2 \
-               --quiet \
-               "$SITE_URL" || echo "No existing site found or download failed"
-          
-          # Also try to download the main index if we're not building main
-          if [ "${{ steps.version.outputs.branch }}" != "main" ]; then
-            wget --quiet --timeout=10 --tries=2 -O combined_public/index.html "$SITE_URL" || echo "Main index not found"
-          fi
-          
-          # Download version directories that exist
-          for version in v1.0 v2.0; do
-            if [ "$version" != "${{ steps.version.outputs.branch }}" ]; then
-              echo "Trying to download $version..."
-              mkdir -p "combined_public/$version"
-              wget --recursive \
-                   --no-parent \
-                   --no-host-directories \
-                   --cut-dirs=2 \
-                   --directory-prefix="combined_public/$version" \
-                   --timeout=10 \
-                   --tries=2 \
-                   --quiet \
-                   "$SITE_URL$version/" || echo "$version not found"
-            fi
-          done
-          
-          echo "Existing site download completed"
-          echo "Current combined_public structure:"
-          find combined_public -name "*.html" | head -10 || echo "No HTML files found"
+          echo "Building v2.0 version..."
+          git clone --depth 1 --branch v2.0 ${{ github.server_url }}/${{ github.repository }} v2.0-build
+          cd v2.0-build
+          npm ci
+          hugo mod tidy
+          hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/v2.0/"
+          mkdir -p ../deployment/v2.0
+          cp -r public/* ../deployment/v2.0/
+          cd ..
+          rm -rf v2.0-build
+          echo "v2.0 version built and copied to /v2.0/"
       
-      # Copy current build to appropriate location
-      - name: Copy current build
+      # Show final structure
+      - name: Show deployment structure
         run: |
-          if [ "${{ steps.version.outputs.path }}" = "." ]; then
-            # Deploy main to root - overwrite main content but preserve version subdirectories
-            echo "Deploying main version to root..."
-            
-            # First, preserve any existing version directories
-            for version in v1.0 v2.0; do
-              if [ -d "combined_public/$version" ]; then
-                echo "Preserving existing $version directory"
-                mv "combined_public/$version" "/tmp/$version-backup" || echo "No $version to preserve"
-              fi
-            done
-            
-            # Copy new main content
-            cp -r public/* combined_public/
-            
-            # Restore version directories
-            for version in v1.0 v2.0; do
-              if [ -d "/tmp/$version-backup" ]; then
-                echo "Restoring $version directory"
-                mv "/tmp/$version-backup" "combined_public/$version"
-              fi
-            done
-          else
-            # Deploy version to subdirectory
-            echo "Deploying ${{ steps.version.outputs.branch }} to subdirectory..."
-            mkdir -p "combined_public/${{ steps.version.outputs.path }}"
-            cp -r public/* "combined_public/${{ steps.version.outputs.path }}/"
-          fi
-          
-          # Show final structure
           echo "Final deployment structure:"
-          find combined_public -name "*.html" | head -15
+          find deployment -name "*.html" | head -20
+          echo ""
+          echo "Directory structure:"
+          ls -la deployment/
+          if [ -d "deployment/v1.0" ]; then
+            echo "v1.0 contents:"
+            ls -la deployment/v1.0/ | head -10
+          fi
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./combined_public
+          path: ./deployment
 
   # Deployment job
   deploy:
