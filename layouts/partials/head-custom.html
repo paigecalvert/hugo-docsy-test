@@ -1,0 +1,2 @@
+{{ $versionSelector := resources.Get "js/version-selector.js" | minify }}
+<script src="{{ $versionSelector.RelPermalink }}" defer></script> 
