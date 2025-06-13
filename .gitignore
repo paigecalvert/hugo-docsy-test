@@ -16,3 +16,13 @@ node_modules/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Hugo default output directory
+/public/
+/resources/
+
+# Temporary files
+.hugo_build.lock
+
+# Hugo module vendor directory
+_vendor/
