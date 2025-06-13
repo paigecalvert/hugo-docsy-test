@@ -4,7 +4,28 @@
 </a>
 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
   {{ range .Site.Params.versions }}
-  <a class="dropdown-item" href="{{ if $.Site.Params.version_menu_pagelinks }}{{ if eq $.Site.Params.version_menu_pagelinks true }}{{ if $.Page.RelPermalink }}{{ $currentPath := $.Page.RelPermalink }}{{ if hasPrefix $currentPath "/docs/" }}{{ $pathAfterDocs := strings.TrimPrefix "/docs/" $currentPath }}{{ $baseURL := strings.TrimSuffix "/" .url }}{{ $baseURL }}/{{ $pathAfterDocs }}{{ else }}{{ .url }}{{ end }}{{ else }}{{ .url }}{{ end }}{{ else }}{{ .url }}{{ end }}{{ else }}{{ .url }}{{ end }}">{{ .version }}</a>
+  <!-- Debug output -->
+  {{ if $.Site.Params.version_menu_pagelinks }}
+    {{ if eq $.Site.Params.version_menu_pagelinks true }}
+      {{ if $.Page.RelPermalink }}
+        Current path: {{ $.Page.RelPermalink }}<br>
+        {{ $currentPath := $.Page.RelPermalink }}
+        {{ if hasPrefix $currentPath "/hugo-docsy-test/docs/" }}
+          {{ $pathAfterDocs := strings.TrimPrefix "/hugo-docsy-test/docs/" $currentPath }}
+          Path after /hugo-docsy-test/docs/: {{ $pathAfterDocs }}<br>
+          {{ $baseURL := "https://paigecalvert.github.io/hugo-docsy-test" }}
+          Base URL: {{ $baseURL }}<br>
+          {{ if eq .version "main" }}
+            Final URL: {{ $baseURL }}/docs/{{ $pathAfterDocs }}<br>
+          {{ else }}
+            Final URL: {{ $baseURL }}/{{ .version }}/docs/{{ $pathAfterDocs }}<br>
+          {{ end }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+  <!-- End debug output -->
+  <a class="dropdown-item" href="{{ if $.Site.Params.version_menu_pagelinks }}{{ if eq $.Site.Params.version_menu_pagelinks true }}{{ if $.Page.RelPermalink }}{{ $currentPath := $.Page.RelPermalink }}{{ if hasPrefix $currentPath "/hugo-docsy-test/docs/" }}{{ $pathAfterDocs := strings.TrimPrefix "/hugo-docsy-test/docs/" $currentPath }}{{ $baseURL := "https://paigecalvert.github.io/hugo-docsy-test" }}{{ if eq .version "main" }}{{ $baseURL }}/docs/{{ $pathAfterDocs }}{{ else }}{{ $baseURL }}/{{ .version }}/docs/{{ $pathAfterDocs }}{{ end }}{{ else }}{{ .url }}{{ end }}{{ else }}{{ .url }}{{ end }}{{ else }}{{ .url }}{{ end }}{{ else }}{{ .url }}{{ end }}">{{ .version }}</a>
   {{ end }}
 </div>
 {{ end }} 
